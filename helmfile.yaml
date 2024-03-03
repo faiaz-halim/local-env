@@ -1,0 +1,52 @@
+environments:
+  dev: {}
+  uat: {}
+
+---
+
+repositories:
+  - name: prometheus
+    url: https://prometheus-community.github.io/helm-charts
+
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+
+  - name: nfs
+    url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+
+releases:
+
+  - name: nfs
+    namespace: platform
+    chart: nfs/nfs-subdir-external-provisioner
+    values:
+      - {{ .Environment.Name }}/values/nfs.yaml
+    wait: true
+
+  - name: metrics-server
+    namespace: platform
+    chart: bitnami/metrics-server
+    values:
+      - {{ .Environment.Name }}/values/metrics-server.yaml
+    wait: true
+
+  - name: elasticsearch
+    namespace: platform
+    chart: bitnami/elasticsearch
+    values:
+      - {{ .Environment.Name }}/values/elasticsearch.yaml
+    wait: true
+
+  - name: fluent-bit
+    namespace: platform
+    chart: bitnami/fluent-bit
+    values:
+      - {{ .Environment.Name }}/values/fluent-bit.yaml
+    wait: true
+
+  - name: prometheus
+    namespace: platform
+    chart: prometheus/kube-prometheus-stack
+    values:
+      - {{ .Environment.Name }}/values/prometheus.yaml
+    wait: true

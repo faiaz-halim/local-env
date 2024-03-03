@@ -1,0 +1,18 @@
+nfs:
+  server:
+  path:
+  mountOptions:
+    - nolock
+    - nfsvers=3
+  volumeName: data
+  reclaimPolicy: Retain
+storageClass:
+  create: true
+  defaultClass: true
+  name: nfs
+  allowVolumeExpansion: true
+  onDelete: delete
+  reclaimPolicy: Delete
+  archiveOnDelete: false
+  accessModes: ReadWriteOnce
+  volumeBindingMode: Immediate
