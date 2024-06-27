@@ -14,7 +14,17 @@ repositories:
   - name: nfs
     url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
 
+  - name: cilium
+    url: https://helm.cilium.io
+
 releases:
+
+  - name: cilium
+    namespace: platform
+    chart: cilium/cilium
+    # values:
+    #   - {{ .Environment.Name }}/values/nfs.yaml
+    wait: true
 
   - name: nfs
     namespace: platform

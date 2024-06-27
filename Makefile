@@ -81,6 +81,8 @@ down:
 apply:
 	-helmfile apply -e dev -f helmfile.yaml --wait 10m
 
-up: install-nfs preparation cluster-create kubectl-config cluster-network cluster-config
+# up: install-nfs preparation cluster-create kubectl-config cluster-network cluster-config
+
+up: install-nfs preparation cluster-create kubectl-config cluster-config
 
 first: install-docker install-kubectl install-kind install-helm install-helmfile up

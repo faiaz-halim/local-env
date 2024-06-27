@@ -6,6 +6,7 @@ featureGates:
   HPAScaleToZero: true
 nodes:
 - role: control-plane
+  image: kindest/node:v1.30.0
   extraPortMappings:
   - containerPort: 30000
     hostPort: 30000
@@ -74,6 +75,10 @@ nodes:
     hostPort: 32767
     listenAddress: "0.0.0.0"
 - role: worker
+  image: kindest/node:v1.30.0
 - role: worker
+  image: kindest/node:v1.30.0
 - role: worker
+  image: kindest/node:v1.30.0
 - role: worker
+  image: kindest/node:v1.30.0

@@ -1,6 +1,6 @@
 nfs:
-  server:
-  path:
+  server: 192.168.2.217
+  path: /home/faiaz/Work/study/RCF/Project1-kind-dev/env/data
   mountOptions:
     - nolock
     - nfsvers=3
