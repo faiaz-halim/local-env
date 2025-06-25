@@ -2,3 +2,8 @@
 ./kind
 kubectl
 *.tar.gz
+**/*.lock
+**/*.tgz
+**/.terraform
+**/*.lock.hcl
+**/*.tfstate
