@@ -39,6 +39,7 @@ module "eks_cluster" {
     core_services = {
       instance_type = "m5.large"
       min_size      = 2
+      desired_size  = 2
       max_size      = 5
       disk_size     = 50
     },
@@ -56,4 +57,71 @@ module "eks_cluster" {
     Owner       = "faiaz-halim"
   }
 }
+```
+
+Of course. Here is the professionally formatted Markdown for the Inputs and Outputs tables, ready to be pasted directly into your `README.md` file.
+
+This format is clean, easy to read, and uses code formatting (` `` `) for variable names and values, which is a standard best practice for technical documentation.
+
+---
+
+### Usage
+
+Here is a basic example of how to use the module to deploy a production-ready EKS cluster. The module requires you to provide your existing network infrastructure (VPC and Subnets).
+
+```hcl
+module "production_cluster" {
+  source = "./modules/my-eks-module" # Or use a Git source
+
+  cluster_name = "prod-eks-demo"
+  vpc_id       = "vpc-0123456789abcdef0"
+  subnet_ids   = ["subnet-0123abc", "subnet-4567def", "subnet-8901ghi"]
+
+  tags = {
+    Environment = "Production"
+    ManagedBy   = "Terraform"
+    Project     = "Showcase"
+  }
+}
+```
+
+---
+
+## Requirements
+
+| Name      | Version |
+| --------- | ------- |
+| terraform | `~> 1.6`  |
+| aws       | `~> 5.0`  |
+
+## Providers
+
+| Name      | Version    |
+| --------- | ---------- |
+| aws       | `~> 5.0`     |
+| kubernetes| `~> 2.23`    |
+| helm      | `~> 2.11`    |
+
+## Inputs
+
+The following table lists the configurable variables for this module and their default values.
+
+| Name                 | Description                                                                                                                                                             | Type           | Default  | Required |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | -------- | :------: |
+| `cluster_name`       | The unique name of the EKS cluster.                                                                                                                                     | `string`       | n/a      |   yes    |
+| `vpc_id`             | The ID of the VPC where the cluster and its nodes will be deployed.                                                                                                     | `string`       | n/a      |   yes    |
+| `subnet_ids`         | A list of subnet IDs where the EKS cluster and worker nodes can be placed.                                                                                              | `list(string)` | n/a      |   yes    |
+| `kubernetes_version` | The Kubernetes version to deploy. Defaults to the latest stable version supported by AWS EKS. This is validated by the underlying AWS module against supported versions. | `string`       | `"1.31"` |    no    |
+| `tags`               | A map of tags to apply to all resources created by the module.                                                                                                          | `map(string)`  | `{}`     |    no    |
+
+## Outputs
+
+The following outputs are exported by the module.
+
+| Name                        | Description                                                                                  |
+| --------------------------- | -------------------------------------------------------------------------------------------- |
+| `cluster_endpoint`          | The endpoint for your EKS Kubernetes API server, used to connect with `kubectl`.             |
+| `cluster_oidc_issuer_url`   | The OIDC issuer URL for the EKS cluster, used for configuring IAM roles for service accounts.  |
+| `cluster_security_group_id` | The primary security group ID for the EKS cluster, useful for network rule configuration.    |
+| `configure_kubectl`         | A shell command that can be run to configure `kubectl` to connect to the new EKS cluster. |
 ```
