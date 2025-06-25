@@ -59,14 +59,6 @@ module "eks_cluster" {
 }
 ```
 
-Of course. Here is the professionally formatted Markdown for the Inputs and Outputs tables, ready to be pasted directly into your `README.md` file.
-
-This format is clean, easy to read, and uses code formatting (` `` `) for variable names and values, which is a standard best practice for technical documentation.
-
----
-
-### Usage
-
 Here is a basic example of how to use the module to deploy a production-ready EKS cluster. The module requires you to provide your existing network infrastructure (VPC and Subnets).
 
 ```hcl
@@ -84,8 +76,6 @@ module "production_cluster" {
   }
 }
 ```
-
----
 
 ## Requirements
 
@@ -124,4 +114,3 @@ The following outputs are exported by the module.
 | `cluster_oidc_issuer_url`   | The OIDC issuer URL for the EKS cluster, used for configuring IAM roles for service accounts.  |
 | `cluster_security_group_id` | The primary security group ID for the EKS cluster, useful for network rule configuration.    |
 | `configure_kubectl`         | A shell command that can be run to configure `kubectl` to connect to the new EKS cluster. |
-```
