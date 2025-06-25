@@ -7,3 +7,4 @@ kubectl
 **/.terraform
 **/*.lock.hcl
 **/*.tfstate
+**/*.backup
